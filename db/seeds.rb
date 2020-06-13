@@ -25,5 +25,3 @@
 
 
 # Sentence.__elasticsearch__.import
-
-print ENV['KEY']

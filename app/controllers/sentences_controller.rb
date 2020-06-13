@@ -5,9 +5,16 @@ class SentencesController < ApplicationController
     language_to = params[:language_to]
 
     sentences = Sentence.search(word).records.includes(:translations).where({ language: language_from })
+
+    mapped = sentences.map { |s| s.get_translations(language_to) }
+    
+    filtered = mapped.select do |s|
+      s[:translations].length != 0
+    end
+  
     vocab_item = {
       word: word,
-      sentences: sentences.map { |s| s.get_translations(language_to) }
+      sentences: filtered
     }
 
 
