@@ -30,7 +30,8 @@ service = 'es'
 # end
 
 Elasticsearch::Model.client = Elasticsearch::Client.new({
-  log: true
+  log: true,
+  url: ENV['ELASTIC_SEARCH_URL'] # 'http://localhost:9200'
 })
 
 # puts client.index index: index, type: type, id: id, body: document
