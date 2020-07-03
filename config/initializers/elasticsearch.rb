@@ -20,18 +20,18 @@ document = {
 region = 'us-east-2' # e.g. us-west-1
 service = 'es'
 
-# Elasticsearch::Model.client = Elasticsearch::Client.new(url: host) do |f|
-#   f.request :aws_sigv4,
-#     service: service,
-#     region: region,
-#     access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-#     secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
-#     # session_token: ENV['AWS_SESSION_TOKEN'] # optional
-# end
+Elasticsearch::Model.client = Elasticsearch::Client.new(url: host) do |f|
+  f.request :aws_sigv4,
+    service: service,
+    region: region,
+    access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+    secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    # session_token: ENV['AWS_SESSION_TOKEN'] # optional
+end
 
-Elasticsearch::Model.client = Elasticsearch::Client.new({
-  log: true,
-  url: ENV['ELASTIC_SEARCH_URL'] # 'http://localhost:9200'
-})
+# Elasticsearch::Model.client = Elasticsearch::Client.new({
+#   log: true,
+#   url: ENV['ELASTIC_SEARCH_URL'] # 'http://localhost:9200'
+# })
 
 # puts client.index index: index, type: type, id: id, body: document
